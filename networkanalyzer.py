@@ -2,6 +2,8 @@
 import numpy as np
 import math
 
+print __name__
+
 class NetworkAnalyzer(object):
     _default = None
 
@@ -31,6 +33,8 @@ class NetworkAnalyzer(object):
         mpowers = np.zeros(len(freqs), np.complex)
         for i in range(len(freqs)):
             mfreqs[i], mpowers[i] = self.measure(freqs[i])
+            if cb:
+                cb(mfreqs[i], mpowers[i])
         return mfreqs, mpowers
 
     @staticmethod

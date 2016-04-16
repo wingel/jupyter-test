@@ -1,5 +1,7 @@
 #! /usr/bin/python
 
+print __name__
+
 class Bg7tbl(object):
     def __init__(self, f):
         self.f = f
@@ -12,6 +14,11 @@ class Bg7tbl(object):
         self.f.write(cmd)
         #resp = self.f.read()
         #print resp.encode('hex')
+
+    def close(self):
+        if self.f:
+            self.f.close()
+        self.f = None
 
 if __name__ == '__main__':
     import socket

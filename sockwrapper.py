@@ -8,6 +8,9 @@ class SockWrapper(object):
         self.data = ''
         self.sock.settimeout(1.0)
 
+    def close(self):
+        self.sock.close()
+
     def settimeout(self, timeout):
         self.sock.settimeout(timeout)
 

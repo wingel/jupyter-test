@@ -6,6 +6,8 @@ import re
 import math
 import cmath
 
+print __name__
+
 def u_db(values):
     return 20 * numpy.log10(abs(values))
 
@@ -38,6 +40,11 @@ class Tek11803(object):
                                        'SMAGNITUDE (?P<mag>[-+.0-9E]+),EQ')
 
         self.init()
+
+    def close(self):
+        if self.f:
+            self.f.close()
+        self.f = None
 
     def junk(self):
         self.f.settimeout(0.1)
