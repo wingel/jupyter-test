@@ -44,12 +44,12 @@ class NetworkAnalyzer(object):
             return NetworkAnalyzer._default
 
         from bg7tbl import Bg7tbl
-        from tek11803 import Tek11803
+        from tek11801 import Tek11801
         from networkanalyzer import NetworkAnalyzer
         from sockwrapper import SockWrapper
 
         source = Bg7tbl(SockWrapper(('localhost', 4715)))
-        meter = Tek11803(SockWrapper(('localhost', 4713)))
+        meter = Tek11801(SockWrapper(('localhost', 4713)))
         meter.init_freq_power('M5')
 
         na = NetworkAnalyzer(source, meter)

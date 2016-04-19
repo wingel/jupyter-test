@@ -5,13 +5,15 @@ from matcher import Matcher
 import re
 import math
 import cmath
+from PIL import Image
+from cStringIO import StringIO
 
 print __name__
 
 def u_db(values):
     return 20 * numpy.log10(abs(values))
 
-class Tek11803(object):
+class Tek11801(object):
     screenres = 552, 704
     touchres = 11,22
 
@@ -126,7 +128,19 @@ class Tek11803(object):
             self.elapsed = self.t1 - self.t0
             print 'elapsed', self.elapsed
 
+        assert data[-5:] == '\r\r\n\r\n'
+        data = data[:-5]
+
         return data
+
+    def copy_pil(self, cb = None):
+        data = self.copy(cb)
+
+        f = StringIO(data)
+        image = Image.open(f)
+        image = image.rotate(90, expand = 1)
+
+        return image
 
     def vpcurve(self):
         resp = self.query('WFMPRE?;VPCURVE?')
